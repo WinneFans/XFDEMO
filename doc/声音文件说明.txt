@@ -1,0 +1,74 @@
+一、arecord命令说明
+ 命令格式:
+
+       arecord [flags] [filename]
+       aplay [flags] [filename [filename]] ...
+
+ 选项:
+       -h, --help
+             帮助.
+
+       --version
+              打印版本信息.
+
+       -l, --list-devices
+              列出全部声卡和数字音频设备.
+
+       -L, --list-pcms
+              列出全部PCM定义.
+
+       -D, --device=NAME
+		指定PCM设备名称.
+
+       -q --quiet
+		安静模式.
+
+       -t, --file-type TYPE
+		文件类型(voc,wav,raw或au).
+
+       -c, --channels=#
+		设置通道号.
+
+       -f --format=FORMAT
+		设置格式.格式包括:S8  U8  S16_LE  S16_BE  U16_LE
+              U16_BE  S24_LE S24_BE U24_LE U24_BE S32_LE S32_BE U32_LE U32_BE
+              FLOAT_LE  FLOAT_BE  FLOAT64_LE  FLOAT64_BE   IEC958_SUBFRAME_LE
+              IEC958_SUBFRAME_BE MU_LAW A_LAW IMA_ADPCM MPEG GSM
+
+       -r, --rate=#<Hz>
+		设置频率.
+
+       -d, --duration=#
+		设置持续时间,单位为秒.
+
+       -s, --sleep-min=#
+		设置最小休眠时间.
+
+       -M, --mmap
+		mmap流.
+
+       -N, --nonblock
+		设置为非块模式.
+
+       -B, --buffer-time=#
+		缓冲持续时长.单位为微妙.
+
+       -v, --verbose
+		显示PCM结构和设置.
+
+       -I, --separate-channels
+		设置为每个通道一个单独文件.
+
+ 示例:
+
+       aplay -c 1 -t raw -r 22050 -f mu_law foobar
+	播放raw文件foobar.以22050Hz,单声道,8位,mu_law格式.
+
+       arecord -d 10 -f cd -t wav -D copy foobar.wav
+	以CD质量录制foobar.wav文件10秒钟.使用PCM的"copy".
+
+二、科大讯飞对语音文件的要求：
+1、采样率16K或8KHz
+2、采样位是16位
+3、单声道
+4、格式是PCM或WAV
